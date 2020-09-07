@@ -2,14 +2,16 @@ import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
 import React from 'react';
 
+import Dog from '../components/Dog/Dog';
 
 const AppBase = kind({
 	name: 'App',
 
 	render: (props) => (
 		<div className={props.className}>
-			<img src="//loremflickr.com/300/300/dog"  alt="A Dog"/>
-			<div>Dog</div>
+			<Dog>
+				Snoopy
+			</Dog>
 		</div>
 	)
 });
