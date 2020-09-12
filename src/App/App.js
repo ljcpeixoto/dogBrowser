@@ -1,29 +1,29 @@
+import {ActivityPanels} from '@enact/moonstone/Panels';
 import kind from '@enact/core/kind';
 import MoonstoneDecorator from '@enact/moonstone/MoonstoneDecorator';
-import Repeater from '@enact/ui/Repeater';
 import React from 'react';
 
-import Dog from '../components/Dog/Dog';
+import Detail from '../views/Detail';
+import List from '../views/List';
 
 const dogs = [
-	"Snoopy",
-	"Rin tin tin",
-	"Lassie",
-	"Totó",
-	"Viralata",
-	"Benji",
-	"K-9000"
+	'Snoopy',
+	'Rin tin tin',
+	'Lassie',
+	'Totó',
+	'Viralata',
+	'Benji',
+	'K-9000'
 ];
 
 const AppBase = kind({
 	name: 'App',
 
 	render: (props) => (
-		<div className={props.className}>
-			<Repeater childComponent={Dog} indexProp="index">
-				{dogs}
-			</Repeater>
-		</div>
+		<ActivityPanels {...props}>
+			<List>{dogs}</List>
+			<Detail />
+		</ActivityPanels>
 	)
 });
 
