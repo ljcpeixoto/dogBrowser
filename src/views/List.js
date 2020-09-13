@@ -10,13 +10,14 @@ const ListBase = kind({
     name: 'List',
 
     propTypes: {
-        children: PropTypes.array
+        children: PropTypes.array,
+        onSelectDog: PropTypes.func
     },
 
-    render: ({children, ...rest}) => (
+    render: ({children, onSelectDog, ...rest}) => (
         <Panel {...rest}>
             <Header title="Dogs!!!" />
-            <Repeater childComponent={Dog} indexProp="index">
+            <Repeater childComponent={Dog} indexProp="index" itemProps={{onSelect: onSelectDog}}>
                 {children}
             </Repeater>
         </Panel>

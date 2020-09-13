@@ -1,3 +1,4 @@
+import Spottable from '@enact/spotlight/Spottable';
 import kind from '@enact/core/kind';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -15,6 +16,7 @@ const DogBase = kind({
    propTypes: {
        children: PropTypes.string,
        index: PropTypes.number,
+       onSelect: PropTypes.func,
        size: PropTypes.number
    },
 
@@ -26,11 +28,19 @@ const DogBase = kind({
        url: ({index, size}) => `//loremflickr.com/${size}/${size}/dog?random=${index}`
     },
 
-    render: ({children, url, ...rest}) => {
+    handlers: {
+       onSelect: (ev, {index, onSelect}) => {
+            if (onSelect) {
+                onSelect(index);
+            }
+       }
+    },
+
+    render: ({children, onSelect, url, ...rest}) => {
        delete rest.index;
        delete rest.size;
         return (
-            <div {...rest}>
+            <div {...rest} onClick={onSelect}>
                 <img src={url} alt="A dog"/>
                 <div>{children}</div>
             </div>
@@ -38,5 +48,7 @@ const DogBase = kind({
     }
 });
 
-export default  DogBase;
-export {DogBase as Dog};
+const Dog = Spottable(DogBase);
+
+export default  Dog;
+export {Dog, DogBase};
