@@ -31,7 +31,7 @@ const DogBase = kind({
     handlers: {
        onSelect: (ev, {index, onSelect}) => {
             if (onSelect) {
-                onSelect(index);
+                onSelect({index});
             }
        }
     },
